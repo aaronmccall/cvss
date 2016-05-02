@@ -1,0 +1,25 @@
+{
+  "name": "cvss",
+  "version": "1.0.0",
+  "description": "A CommonJS library for working with Common Vulnerability Scoring System vectors and scores.",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -v -t 99"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronmccall/cvss.git"
+  },
+  "keywords": [],
+  "author": "Aaron McCall <aaron@andyet.net> (https://github.com/aaronmccall)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaronmccall/cvss/issues"
+  },
+  "homepage": "https://github.com/aaronmccall/cvss#readme",
+  "devDependencies": {
+    "code": "^2.2.0",
+    "eslint": "^2.8.0",
+    "lab": "^10.3.1"
+  }
+}
