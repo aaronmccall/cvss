@@ -17,7 +17,7 @@ console.log(score) // => 6.2
 var rating = cvss.getRating(score);
 
 console.log(rating) // => Medium
-
+```
 
 ### #getScore [String or Object input], [Object options (optional)]
 
@@ -49,7 +49,7 @@ Given a numeric score, returns the appropriate CVSS3 severity rating for that nu
 ### #getBase [String or Object input], [Object options (optional)]
 
 Returns an object with the base score and its rating. Equivalent to
-```
+```javascript
 {
     score: getBaseScore(input),
     rating: getRating(getBaseScore(input))
@@ -59,7 +59,7 @@ Returns an object with the base score and its rating. Equivalent to
 ### #getEnvironmental [String or Object input], [Object options (optional)]
 
 Returns an object with the environmental score and its rating. Equivalent to
-```
+```javascript
 {
     score: getEnvironmentalScore(input),
     rating: getRating(getEnvironmentalScore(input))
@@ -69,7 +69,7 @@ Returns an object with the environmental score and its rating. Equivalent to
 ### #getTemporal [String or Object input], [Object options (optional)]
 
 Returns an object with the environmental score and its rating. Equivalent to
-```
+```javascript
 {
     score: getTemporalScore(input),
     rating: getRating(getTemporalScore(input))
@@ -79,7 +79,7 @@ Returns an object with the environmental score and its rating. Equivalent to
 ### #getAll [String or Object input], [Object options (optional)]
 
 Returns object with the score and rating for all three scores:
-```
+```javascript
 {
     base: getBase(input),
     temporal: getTemporal(input),
