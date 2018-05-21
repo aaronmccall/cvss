@@ -10,13 +10,6 @@ var keys = require('../lib/keys');
 var metrics = require('../lib/metrics');
 var parseVector = require('../lib/vector').parse;
 
-function wrapDone(fn) {
-  return function (done) {
-    fn();
-    done();
-  };
-}
-
 var internals = {};
 
 internals.vectorString = 'CVSS:3.0/AV:X/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:L';
@@ -33,18 +26,18 @@ describe('scores', function () {
 
   describe('#getExploitability', function () {
 
-    it('reduces 8.22 with the combined product of exploitability scores', wrapDone(function () {
+    it('reduces 8.22 with the combined product of exploitability scores', function () {
       var simpleScores = keys.exploitability.reduce(scoreReducer, {});
       expect(scores.getExploitability(simpleScores)).to.equal(8.22 / Math.pow(2, keys.exploitability.length))
 
       var envScores = keys.envExploitability.reduce(scoreReducer, {});
       expect(scores.getExploitability(envScores, { env: true })).to.equal(8.22 / Math.pow(2, keys.envExploitability.length));
-    }));
+    });
   });
 
   describe('#getImpact', function () {
-    
-    it('returns different values depending on the "S" metrics value', wrapDone(function () {
+
+    it('returns different values depending on the "S" metrics value', function () {
 
       var simpleScores = keys.impact.reduce(scoreReducer, {});
       var simpleScopeUnchangedImpact = scores.getImpact(simpleScores, { S: 'U' });
@@ -54,16 +47,16 @@ describe('scores', function () {
       var envScopeUnchangedImpact = scores.getImpact(envScores, { MS: 'U' }, { env: true });
       var envScopeChangedImpact = scores.getImpact(envScores, { MS: 'C' }, { env: true });
       expect(envScopeUnchangedImpact).to.be.lessThan(envScopeChangedImpact);
-    }));
+    });
   });
 
   describe('#getBase', function () {
     var vector;
-    lab.beforeEach(wrapDone(function () {
+    lab.beforeEach(function () {
       vector = parseVector(internals.vectorString);
-    }));
+    });
 
-    it('calls getImpact with generated scores, vector, and options', wrapDone(function () {
+    it('calls getImpact with generated scores, vector, and options', function () {
       var oldGetImpact = scores.getImpact;
       var impactCalls = [];
       scores.getImpact = function (scores, vector, options) {
@@ -85,14 +78,14 @@ describe('scores', function () {
       expect(call1.options).to.exist().and.include('env');
 
       scores.getImpact = oldGetImpact;
-    }));
+    });
 
-    it('returns 0.0 when impact score is < 0.1', wrapDone(function () {
+    it('returns 0.0 when impact score is < 0.1', function () {
 
       expect(scores.getBase({ C: 'N', I: 'N', A: 'N' })).to.equal(0.0);
-    }));
+    });
 
-    it('calls getExploitability with generated scores and options', wrapDone(function () {
+    it('calls getExploitability with generated scores and options', function () {
       var oldGetExploitability = scores.getExploitability;
       var exploitabilityCalls = [];
       scores.getExploitability = function (scores, options) {
@@ -112,12 +105,12 @@ describe('scores', function () {
       expect(call1.options).to.exist().and.include('env');
 
       scores.getExploitability = oldGetExploitability;
-    }));
+    });
   });
 
   describe('#getTemporal', function () {
 
-    it('reduces the base score with the combined product of temporal scores', wrapDone(function () {
+    it('reduces the base score with the combined product of temporal scores', function () {
       var score = 10;
       var vector = { E: 'F', RL: 'W' };
 
@@ -126,6 +119,6 @@ describe('scores', function () {
       }, score)) * 10.0) / 10.0;
 
       expect(scores.getTemporal(vector, score)).to.equal(expected);
-    }));
+    });
   });
 });
