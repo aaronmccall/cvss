@@ -85,6 +85,14 @@ describe('scores', function () {
       expect(scores.getBase({ C: 'N', I: 'N', A: 'N' })).to.equal(0.0);
     });
 
+    it('multiplies by the modifier by the sum of impact and exploitability when S:C is set', function() {
+      /*
+        this vector has high "exploitability"; so it is more impacted by the inclusion or exclusion of this term
+        from the modifier multiplication
+       */
+      expect(scores.getBase({ AV: 'N', C: 'H', S: 'C' })).to.equal(6.2);
+    });
+
     it('calls getExploitability with generated scores and options', function () {
       var oldGetExploitability = scores.getExploitability;
       var exploitabilityCalls = [];
