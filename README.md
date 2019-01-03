@@ -29,7 +29,7 @@ The optional **options** parameter controls whether validation errors throw or n
 - _throw_: if validation returns an error, throw the error
 - _baseOnly_: only consider base metrics when calculating score
 - _temporal_: include temporal metrics when calculating score
-- _environmental_: include temporal AND environmental metrics when calculating score (both are included per CVSS3 spec)
+- _env_: include temporal AND environmental metrics when calculating score (both are included per CVSS3 spec)
 
 ### #getBaseScore [String or Object input], [Object options (optional)]
 
