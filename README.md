@@ -1,9 +1,22 @@
 # cvss
+[![NPM](https://img.shields.io/npm/v/cvss.svg)](https://www.npmjs.com/package/cvss)
+![npm](https://img.shields.io/npm/dm/cvss.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/aaronmccall/cvss.svg)
+[![NPM](https://img.shields.io/npm/l/cvss.svg)](https://opensource.org/licenses/ISC)
+
 A CommonJS library for working with Common Vulnerability Scoring System vectors and scores.
 
 ## Install
 
-`npm i cvss`
+```bash
+npm install --save cvss
+```
+
+with yarn:
+
+```bash
+yarn add cvss
+```
 
 ## Usage
 
