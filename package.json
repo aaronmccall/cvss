@@ -19,7 +19,7 @@
   "homepage": "https://github.com/aaronmccall/cvss#readme",
   "devDependencies": {
     "code": "^2.2.0",
-    "eslint": "^2.8.0",
+    "eslint": "^4.18.2",
     "lab": "^15.4.5"
   }
 }
