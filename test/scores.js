@@ -114,6 +114,12 @@ describe('scores', function () {
 
       scores.getExploitability = oldGetExploitability;
     });
+
+    it('returns the correct environmental score for vector without modifiers', function () {
+      var someVector = parseVector('CVSS:3.0/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L/CR:H/IR:H/AR:H/MS:X');
+
+      expect(scores.getBase(someVector, { env: true })).to.equal(7.4);
+    });
   });
 
   describe('#getTemporal', function () {
